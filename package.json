@@ -2,9 +2,10 @@
   "name": "validator-brasil",
   "version": "0.0.1-beta",
   "description": "Extensão de validações brasileiras para o validator.js",
-  "main": "dis/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --detectOpenHandles",
+    "build": "tsc --build"
   },
   "repository": {
     "type": "git",
