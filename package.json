@@ -1,0 +1,29 @@
+{
+  "name": "validator-brasil",
+  "version": "0.0.1",
+  "description": "Extensão de validações brasileiras para o validator.js",
+  "main": "dis/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ogilvieira/validator-brasil.git"
+  },
+  "keywords": [
+    "validator",
+    "brasil",
+    "cpf",
+    "cnpj",
+    "renavan",
+    "uf",
+    "cnh",
+    "pix"
+  ],
+  "author": "Gil Vieira <ogilvieira@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ogilvieira/validator-brasil/issues"
+  },
+  "homepage": "https://github.com/ogilvieira/validator-brasil#readme"
+}
