@@ -1,23 +1,15 @@
 import { isCPF } from './index';
 
-describe("cpf validation", () => {
-  it("should return true to valid cpf wythout hyphen and points", () => {
-    expect(isCPF("14552586017")).toBeTruthy();
-  });
+const valids = ['14552586017', '145.525.860-17', '15598590590', '485.040.718-80', '18772203536', '30792967291', '84053241600'];
+const invalids = ['33333333333', '22222222222', '00011122233', '84053241601']
 
-  it("should return true to valid cpf with hyphen and points", () => {
-    expect(isCPF("145.525.860-17")).toBeTruthy();
-  });
+describe("CPF validation", () => {
+  test.each(valids)("the input %p should be valid", (renavam) => {
+    expect(isCPF(renavam)).toBeTruthy();
+  })
 
-  it("should return false with letters", () => {
-    expect(isCPF("14552586017a")).toBeFalsy();
-  });
+  test.each(invalids)("the input %p should be invalid", (renavam) => {
+    expect(isCPF(renavam)).toBeFalsy();
+  })
 
-  it("should return false to invalid cpf wythout hyphen and points", () => {
-    expect(isCPF("00011122233")).toBeFalsy();
-  });
-
-  it("should return false to invalid cpf with hyphen and points", () => {
-    expect(isCPF("000.111.222-33")).toBeFalsy();
-  });
 });

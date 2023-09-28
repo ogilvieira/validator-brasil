@@ -1,23 +1,15 @@
 import { isCNPJ } from './index';
 
-describe("cnpj validation", () => {
-  it("should return true to valid cnpj without hyphen and points", () => {
-    expect(isCNPJ("00933180000164")).toBeTruthy();
-  });
+const valids = ['00933180000164', '00.933.180/0001-64', '93350666000150', '73312680000152'];
+const invalids = ['00933180000164a', '001112220000133', '00000000000000', '83312680000152', '73312680000153']
 
-  it("should return true to valid cnpj with hyphen and points", () => {
-    expect(isCNPJ("00.933.180/0001-64")).toBeTruthy();
-  });
+describe("CPF validation", () => {
+  test.each(valids)("the input %p should be valid", (renavam) => {
+    expect(isCNPJ(renavam)).toBeTruthy();
+  })
 
-  it("should return false with letters", () => {
-    expect(isCNPJ("00933180000164a")).toBeFalsy();
-  });
+  test.each(invalids)("the input %p should be invalid", (renavam) => {
+    expect(isCNPJ(renavam)).toBeFalsy();
+  })
 
-  it("should return false to invalid cnpj with hyphen and points", () => {
-    expect(isCNPJ("001112220000133")).toBeFalsy();
-  });
-
-  it("should return false to invalid cnpj", () => {
-    expect(isCNPJ("00000000000000")).toBeFalsy();
-  });
 });

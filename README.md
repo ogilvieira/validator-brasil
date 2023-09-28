@@ -20,8 +20,8 @@ yarn add validator-brasil
 
 - [x] CPF
 - [x] CNPJ
-- [ ] CEP
-- [ ] RENAVAN
+- [x] CEP
+- [x] RENAVAM
 - [ ] CNH
 - [ ] UF
 - [ ] Chave Pix Aleatória
