@@ -26,5 +26,6 @@ yarn add validator-brasil
 - [ ] UF
 - [ ] Chave Pix Aleatória
 - [ ] PIS/PASEP
+- [ ] RG
 - [ ] Titulo de Eleitor
 - [ ] Certidão (nascimento, casamento, divórcio ou óbito pós 2010)
