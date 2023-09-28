@@ -19,7 +19,14 @@
     "renavan",
     "uf",
     "cnh",
-    "pix"
+    "pix",
+    "chave pix",
+    "rg",
+    "titulo de eleitor",
+    "certidão",
+    "nascimento",
+    "divórcio",
+    "óbito"
   ],
   "author": "Gil Vieira <ogilvieira@gmail.com>",
   "license": "MIT",
