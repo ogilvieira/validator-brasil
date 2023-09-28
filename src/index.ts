@@ -1,5 +1,7 @@
 import isCPF from './isCPF';
+import isCNPJ from './isCNPJ';
 
-export default {
-  isCPF
+export {
+  isCPF,
+  isCNPJ
 }

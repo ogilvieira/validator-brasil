@@ -1,4 +1,4 @@
-import isCPF from './isCPF';
+import { isCPF } from './index';
 
 describe("cpf validation", () => {
   it("should return true to valid cpf wythout hyphen and points", () => {

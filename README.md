@@ -19,7 +19,7 @@ yarn add validator-brasil
 ### TO DO
 
 - [x] CPF
-- [ ] CNPJ
+- [x] CNPJ
 - [ ] CEP
 - [ ] RENAVAN
 - [ ] CNH

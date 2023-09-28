@@ -1,4 +1,3 @@
-declare const _default: {
-    isCPF: (value: string | number) => boolean;
-};
-export default _default;
+import isCPF from './isCPF';
+import isCNPJ from './isCNPJ';
+export { isCPF, isCNPJ };

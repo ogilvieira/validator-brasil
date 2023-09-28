@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const isCPF = (value) => {
-    value = ('' + value).replace(/\D/g, "");
+    value = ('' + value).replace(/[\.\-\/]+/g, "");
     if (value == "")
         return false;
     if (value.length != 11 ||

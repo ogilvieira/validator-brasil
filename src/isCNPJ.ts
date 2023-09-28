@@ -1,4 +1,4 @@
-const isCPF = ( value: string | number ): boolean => {
+const isCNPJ = ( value: string | number ): boolean => {
   value = (''+value).replace(/[\.\-\/]+/g, "");
 
   if (value == "") return false;
@@ -20,30 +20,30 @@ const isCPF = ( value: string | number ): boolean => {
     return false;
 
   var size = value.length - 2;
-  var numbers = +value.substring(0, size);
-  var digits = +value.substring(size);
+  var numbers = value.substring(0, size);
+  var digits = value.substring(size);
   var sum = 0;
   var pos = size - 7;
   for (var i = size; i >= 1; i--) {
-    sum += numbers.charAt(size - i) * pos--;
+    sum += +numbers.charAt(size - i) * pos--;
     if (pos < 2) pos = 9;
   }
   var result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result !== digits.charAt(0)) return false;
+  if (result !== +digits.charAt(0)) return false;
 
   size = size + 1;
   numbers = value.substring(0, size);
   sum = 0;
   pos = size - 7;
   for (var i = size; i >= 1; i--) {
-    sum += numbers.charAt(size - i) * pos--;
+    sum += +numbers.charAt(size - i) * pos--;
     if (pos < 2) pos = 9;
   }
   result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result != digits.charAt(1)) return false;
+  if (result != +digits.charAt(1)) return false;
 
   return true;
 }
 
 
-export default isCPF;
+export default isCNPJ;
