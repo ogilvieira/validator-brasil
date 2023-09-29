@@ -23,8 +23,8 @@ yarn add validator-brasil
 - [x] CEP
 - [x] RENAVAM
 - [x] CNH
-- [ ] UF
-- [ ] Chave Pix Aleatória
+- [x] UF
+- [x] Chave Pix Aleatória
 - [ ] PIS/PASEP
 - [ ] RG
 - [ ] Titulo de Eleitor
