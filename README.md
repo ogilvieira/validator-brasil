@@ -22,7 +22,7 @@ yarn add validator-brasil
 - [x] CNPJ
 - [x] CEP
 - [x] RENAVAM
-- [ ] CNH
+- [x] CNH
 - [ ] UF
 - [ ] Chave Pix Aleatória
 - [ ] PIS/PASEP

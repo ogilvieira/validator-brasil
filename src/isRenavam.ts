@@ -2,7 +2,6 @@ const isRenavam = ( value: string | number ): boolean => {
   value = (''+value).replace(/[\.\-\/]+/g, "");
   if (!value || value.length !== 11 || value.match(/(\d)\1{10}/)) return false;
 
-
   let valueArr: number[] = value.split('').map(a => +a),
       factor: number = 2,
       sum: number = 0,
