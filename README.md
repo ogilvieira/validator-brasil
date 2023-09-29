@@ -4,16 +4,18 @@ Extensão do [validator.js](https://github.com/validatorjs/validator.js) para va
 
 [![Tests and Publish](https://github.com/ogilvieira/validator-brasil/actions/workflows/main.yml/badge.svg)](https://github.com/ogilvieira/validator-brasil/actions/workflows/main.yml)
 [![npm-version](https://img.shields.io/npm/v/validator-brasil?color=brightgreen&label=npm%20package)](https://www.npmjs.com/package/validator-brasil)
+[![downloads](https://img.shields.io/npm/dt/validator-brasil.svg)](https://www.npmjs.com/package/validator-brasil)
+
 
 ## Instalação
-```
+```bash
 npm install validator-brasil --save
 // or
 yarn add validator-brasil
 ```
 
 ## Uso
-```
+```typescript
 import validatorBrasil from 'validator-brasil';
 // import isCPF from 'validator-brasil/isCPF';
 // const isCPF = require('validator-brasil/isCPF');
