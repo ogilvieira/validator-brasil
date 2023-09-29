@@ -1,6 +1,6 @@
 {
   "name": "validator-brasil",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Extensão de validações brasileiras para o validator.js",
   "main": "dist/index.js",
   "scripts": {

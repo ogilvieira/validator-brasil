@@ -20,7 +20,7 @@ import validatorBrasil from 'validator-brasil';
 // import isCPF from 'validator-brasil/isCPF';
 // const isCPF = require('validator-brasil/isCPF');
 
-validatorBrasil.isCPF('045.462.356-90') //false
+validatorBrasil.isCPF('045.462.356-90') //true
 ```
 
 ## Métodos
