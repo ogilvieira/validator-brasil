@@ -5,6 +5,7 @@ import isRenavam from './isRenavam';
 import isCNH from './isCNH';
 import isUF from './isUF';
 import isChavePix from './isChavePix';
+import isPisPasep from './isPisPasep';
 
 export {
   isCPF,
@@ -13,5 +14,6 @@ export {
   isRenavam,
   isCNH,
   isUF,
-  isChavePix
+  isChavePix,
+  isPisPasep
 }
