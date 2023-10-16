@@ -23,10 +23,7 @@
     "chave pix",
     "rg",
     "titulo de eleitor",
-    "certidão",
-    "nascimento",
-    "divórcio",
-    "óbito"
+    "certidao"
   ],
   "author": "Gil Vieira <ogilvieira@gmail.com>",
   "license": "MIT",

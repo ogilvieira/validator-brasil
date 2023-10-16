@@ -34,7 +34,7 @@ validatorBrasil.isCPF('045.462.356-90') //true
 |isRenavam(string)|Renavam com e sem pontuação|11779918350|
 |isUF(string)|UF de estados brasileiros|sp|
 |isChavePix(string)|Padrão de chave pix aleatória|123e4567-e89b-12d3-a456-426655440000|
-|❌ isPisPasep(string)|PIS/PASEP com e sem pontuação|888.18726.88-5|
+|isPisPasep(string)|PIS/PASEP com e sem pontuação|888.18726.88-5|
 |❌ isRG(string)|RG com e sem pontuação|35.181.674-4|
 |❌ isTituloEleitor(string, { uf: string })|Titulo de eleitor por estado brasileiro|434028530132|
 |❌ isCertidao(string)|Certidões de Nascimento, Casamento, Óbito, entre outras|623584 01 55 2023 9 48814 529 8424277-49|
