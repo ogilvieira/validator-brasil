@@ -1,8 +1,6 @@
 # TODO
 
 ### Validadores
-
-- [ ] PIS/PASEP
 - [ ] Registro Geral (RG)
 - [ ] Titulo de Eleitor
 - [ ] Certidão (nascimento, casamento, divórcio ou óbito pós 2010)
