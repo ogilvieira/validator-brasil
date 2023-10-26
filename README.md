@@ -38,7 +38,7 @@ validatorBrasil.isCPF('045.462.356-90') //true
 |❌ isRG(string)|RG com e sem pontuação|35.181.674-4|
 |❌ isTituloEleitor(string, { uf: string })|Titulo de eleitor por estado brasileiro|434028530132|
 |❌ isCertidao(string)|Certidões de Nascimento, Casamento, Óbito, entre outras|623584 01 55 2023 9 48814 529 8424277-49|
-|❌ isInscricaoEstadual(string, { uf: string })|CPF com e sem pontuação|145.525.860-17|
+|❌ isInscricaoEstadual(string, { uf: string })|Inscrição Estadual com e sem pontuação|997.712.286.852|
 |❌ isPlacaVeiculo(string)|Placas de automóveis brasileiros e mercosul|JYC-8417|
 |❌ isCNS|Cartão Nacional de Saúde|137 2766 6992 0001|
 |❌ isNIF|Número de Identificação Fiscal|664551142|
