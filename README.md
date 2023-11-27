@@ -17,8 +17,8 @@ yarn add validator-brasil
 ## Uso
 ```typescript
 import validatorBrasil from 'validator-brasil';
-// import isCPF from 'validator-brasil/isCPF';
-// const isCPF = require('validator-brasil/isCPF');
+// import isCPF from 'validator-brasil/dist/isCPF';
+// const isCPF = require('validator-brasil/dist/isCPF');
 
 validatorBrasil.isCPF('045.462.356-90') //true
 ```
