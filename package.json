@@ -1,15 +1,47 @@
 {
   "name": "validator-brasil",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Validações de documentos brasileiros (CPF, CNPJ alfanumérico, CNH, RG, Título de Eleitor, Inscrição Estadual, Pix e mais), compatível com validator.js",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./dist/*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./dist/*.js": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    },
+    "./*": {
+      "import": {
+        "types": "./dist/esm/*.d.ts",
+        "default": "./dist/esm/*.js"
+      },
+      "require": {
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "jest",
-    "build": "tsc --build",
+    "build": "rm -rf dist && tsc -p tsconfig.json && tsc -p tsconfig.esm.json && echo '{\"type\": \"module\"}' > dist/esm/package.json",
     "prepublishOnly": "npm run build"
   },
   "engines": {

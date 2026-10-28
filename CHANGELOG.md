@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.0
+
+### Novidades
+- Build ESM ao lado do CommonJS, com `exports` no `package.json`. Os imports `validator-brasil/isCPF` e `validator-brasil/dist/isCPF` funcionam nos dois formatos.
+- `isRG(value, { uf })` aceita RG de qualquer UF. Em SP valida o dígito verificador; nas demais, o formato. Com `uf`, também aceita a CIN (número = CPF).
+- `isTituloEleitor` aceita títulos de 13 dígitos de SP e MG.
+- `isRenavam` aceita o Renavam antigo de 9 dígitos.
+- Novo método `isNIF` (CPF ou CNPJ).
+
+### Infra
+- Publicação no npm via trusted publishing (OIDC). O `NODE_AUTH_TOKEN` agora fica no nível do job, o que corrige a falha do yarn no `setup-node`.
+
 ## 2.0.0
 
 ### Quebra de compatibilidade

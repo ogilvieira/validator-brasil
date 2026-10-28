@@ -1,17 +1,18 @@
-import isCPF from './isCPF';
-import isCNPJ from './isCNPJ';
-import isCEP from './isCEP';
-import isRenavam from './isRenavam';
-import isCNH from './isCNH';
-import isUF from './isUF';
-import isChavePix from './isChavePix';
-import isPisPasep from './isPisPasep';
-import isRG from './isRG';
-import isTituloEleitor from './isTituloEleitor';
-import isCertidao from './isCertidao';
-import isInscricaoEstadual from './isInscricaoEstadual';
-import isPlacaVeiculo from './isPlacaVeiculo';
-import isCNS from './isCNS';
+import isCPF from './isCPF.js';
+import isCNPJ from './isCNPJ.js';
+import isCEP from './isCEP.js';
+import isRenavam from './isRenavam.js';
+import isCNH from './isCNH.js';
+import isUF from './isUF.js';
+import isChavePix from './isChavePix.js';
+import isPisPasep from './isPisPasep.js';
+import isRG from './isRG.js';
+import isTituloEleitor from './isTituloEleitor.js';
+import isCertidao from './isCertidao.js';
+import isInscricaoEstadual from './isInscricaoEstadual.js';
+import isPlacaVeiculo from './isPlacaVeiculo.js';
+import isCNS from './isCNS.js';
+import isNIF from './isNIF.js';
 
 export {
   isCPF,
@@ -27,7 +28,8 @@ export {
   isCertidao,
   isInscricaoEstadual,
   isPlacaVeiculo,
-  isCNS
+  isCNS,
+  isNIF
 }
 
 export default {
@@ -44,5 +46,6 @@ export default {
   isCertidao,
   isInscricaoEstadual,
   isPlacaVeiculo,
-  isCNS
+  isCNS,
+  isNIF
 }
