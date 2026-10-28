@@ -188,7 +188,12 @@ yarn test   # testes + cobertura (mínimo de 80%)
 yarn build  # gera dist/
 ```
 
-O pipeline publica no npm a cada push na `main` em que a versão do `package.json` ainda não foi publicada.
+A cada push na `main` em que a versão do `package.json` ainda não foi publicada, o pipeline envia o pacote para a área de staging do npm (`npm stage publish`). A versão só fica pública depois de aprovada por um mantenedor:
+
+```bash
+npm stage list validator-brasil
+npm stage approve <stage-id> --otp <código-2fa>
+```
 
 Veja o [CHANGELOG](./CHANGELOG.md) e o [roadmap](./docs/TODO.md).
 
