@@ -6,6 +6,12 @@ import isCNH from './isCNH';
 import isUF from './isUF';
 import isChavePix from './isChavePix';
 import isPisPasep from './isPisPasep';
+import isRG from './isRG';
+import isTituloEleitor from './isTituloEleitor';
+import isCertidao from './isCertidao';
+import isInscricaoEstadual from './isInscricaoEstadual';
+import isPlacaVeiculo from './isPlacaVeiculo';
+import isCNS from './isCNS';
 
 export {
   isCPF,
@@ -15,5 +21,28 @@ export {
   isCNH,
   isUF,
   isChavePix,
-  isPisPasep
+  isPisPasep,
+  isRG,
+  isTituloEleitor,
+  isCertidao,
+  isInscricaoEstadual,
+  isPlacaVeiculo,
+  isCNS
+}
+
+export default {
+  isCPF,
+  isCNPJ,
+  isCEP,
+  isRenavam,
+  isCNH,
+  isUF,
+  isChavePix,
+  isPisPasep,
+  isRG,
+  isTituloEleitor,
+  isCertidao,
+  isInscricaoEstadual,
+  isPlacaVeiculo,
+  isCNS
 }

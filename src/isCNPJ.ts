@@ -1,32 +1,27 @@
+// valor do caractere = código ASCII - 48 (0-9 => 0-9, A-Z => 17-42), conforme IN RFB nº 2.229/2024
+const charValue = ( char: string ): number => char.charCodeAt(0) - 48;
+
+const calcDv = ( value: string ): number => {
+  let sum = 0;
+  let weight = 2;
+  for (let i = value.length - 1; i >= 0; i--) {
+    sum += charValue(value.charAt(i)) * weight;
+    weight = weight === 9 ? 2 : weight + 1;
+  }
+  const rest = sum % 11;
+  return rest < 2 ? 0 : 11 - rest;
+}
+
 const isCNPJ = ( value: string | number ): boolean => {
-  value = (''+value).replace(/[\.\-\/]+/g, "");
+  value = (''+value).replace(/[\.\-\/]+/g, "").toUpperCase();
 
-  if (value == "" || value.length !== 14 || !!value.match(/(\d)\1{13}/)) return false;
+  if (!/^[0-9A-Z]{12}\d{2}$/.test(value) || !!value.match(/^(\d)\1{13}$/)) return false;
 
-  var size = value.length - 2;
-  var numbers = value.substring(0, size);
-  var digits = value.substring(size);
-  var sum = 0;
-  var pos = size - 7;
-  for (var i = size; i >= 1; i--) {
-    sum += +numbers.charAt(size - i) * pos--;
-    if (pos < 2) pos = 9;
-  }
-  var result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result !== +digits.charAt(0)) return false;
+  const base = value.substring(0, 12);
+  const dv1 = calcDv(base);
+  const dv2 = calcDv(base + dv1);
 
-  size = size + 1;
-  numbers = value.substring(0, size);
-  sum = 0;
-  pos = size - 7;
-  for (var i = size; i >= 1; i--) {
-    sum += +numbers.charAt(size - i) * pos--;
-    if (pos < 2) pos = 9;
-  }
-  result = sum % 11 < 2 ? 0 : 11 - (sum % 11);
-  if (result !== +digits.charAt(1)) return false;
-
-  return true;
+  return value.substring(12) === ''+dv1+dv2;
 }
 
 
