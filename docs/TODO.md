@@ -2,7 +2,7 @@
 
 ### Validadores
 - [x] Registro Geral (RG): dígito verificador em SP, formato nas demais UFs, CIN
-- [x] Título de Eleitor, incluindo 13 dígitos (SP/MG)
+- [x] Título de Eleitor de todas as UFs, incluindo 13 dígitos
 - [x] Certidão (nascimento, casamento, divórcio ou óbito pós 2010)
 - [x] Inscrição Estadual
 - [x] Placa de Veículo

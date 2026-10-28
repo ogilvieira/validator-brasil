@@ -18,8 +18,6 @@ const isTituloEleitor = ( value: string | number, options: Options = {} ): boole
 
   // SP (01) e MG (02): resto 0 vira DV 1
   const isSpMg = ufCode === '01' || ufCode === '02';
-  // títulos antigos de 13 dígitos (sequencial com 9 dígitos) só existem em SP e MG
-  if (size === 13 && !isSpMg) return false;
   const toDv = (rest: number): number => rest === 10 ? 0 : (rest === 0 && isSpMg ? 1 : rest);
 
   // pesos de 9 a 2 da direita para a esquerda, voltando a 9 no nono dígito
