@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1
+
+### Correções
+- `isTituloEleitor` aceita títulos de 13 dígitos de todas as UFs, não só de SP e MG.
+
 ## 2.1.0
 
 ### Novidades

@@ -45,7 +45,7 @@ Todos os métodos retornam `boolean`, nunca lançam exceção e aceitam o valor 
 | `isChavePix(value, { type? })` | Chave Pix de qualquer tipo | `+5511987654321` |
 | `isPisPasep(value)` | PIS/PASEP/NIT | `888.18726.88-5` |
 | `isRG(value, { uf? })` | RG (dígito verificador em SP, formato nas demais UFs) e CIN | `35.181.674-4` |
-| `isTituloEleitor(value, { uf? })` | Título de Eleitor (12 dígitos, ou 13 em SP/MG) | `4340 2853 0132` |
+| `isTituloEleitor(value, { uf? })` | Título de Eleitor de todas as UFs (12 ou 13 dígitos) | `4340 2853 0132` |
 | `isCertidao(value)` | Matrícula de certidão (nascimento, casamento, óbito) | `623584 01 55 2023 9 48814 529 8424277-49` |
 | `isInscricaoEstadual(value, { uf })` | Inscrição Estadual dos 27 estados | `110.042.490.114` (SP) |
 | `isPlacaVeiculo(value, { format? })` | Placa antiga ou Mercosul | `JYC-8417`, `BRA2E19` |
@@ -93,7 +93,7 @@ isRG('145.525.860-17', { uf: 'RJ' });          // true (CIN)
 #### `isTituloEleitor`
 Valida os dígitos verificadores e o código de UF (as posições logo antes dos 2 dígitos verificadores). Com `{ uf }`, também confere se o título foi emitido naquele estado (`ZZ` = exterior).
 
-Títulos antigos de SP e MG podem ter 13 dígitos (sequencial com 9 dígitos). O TSE não publica o cálculo desse formato; o método segue a convenção usada na prática, com pesos de 9 a 2 da direita para a esquerda e voltando a 9 no nono dígito.
+Aceita títulos de 12 dígitos e também os antigos de 13 dígitos (sequencial com 9 dígitos), mais comuns em SP e MG, em qualquer UF. O TSE não publica o cálculo do formato de 13 dígitos; o método segue a convenção usada na prática, com pesos de 9 a 2 da direita para a esquerda e voltando a 9 no nono dígito.
 
 #### `isInscricaoEstadual`
 `uf` é obrigatório, porque cada estado tem a sua regra. Retorna `false` para `"ISENTO"`.
