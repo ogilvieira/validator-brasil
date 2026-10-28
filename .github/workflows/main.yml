@@ -29,6 +29,13 @@ jobs:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # trusted publishing (OIDC) do npm
+      id-token: write
+    env:
+      # o .npmrc gerado pelo setup-node referencia ${NODE_AUTH_TOKEN}; o yarn falha se ela não existir
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -42,7 +49,7 @@ jobs:
         id: version
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          if npm view "validator-brasil@$VERSION" version > /dev/null 2>&1; then
+          if curl -sf "https://registry.npmjs.org/validator-brasil/$VERSION" > /dev/null; then
             echo "publish=false" >> "$GITHUB_OUTPUT"
           else
             echo "publish=true" >> "$GITHUB_OUTPUT"
@@ -50,5 +57,3 @@ jobs:
       - name: Publishing
         if: steps.version.outputs.publish == 'true'
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
