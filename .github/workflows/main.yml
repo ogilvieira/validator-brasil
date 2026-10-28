@@ -54,6 +54,7 @@ jobs:
           else
             echo "publish=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Publishing
+      # o token é "stage only": a versão fica pendente até ser aprovada com `npm stage approve <id> --otp`
+      - name: Staging
         if: steps.version.outputs.publish == 'true'
-        run: npm publish
+        run: npm stage publish

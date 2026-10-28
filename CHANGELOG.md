@@ -6,7 +6,7 @@
 - `isTituloEleitor` aceita títulos de 13 dígitos de todas as UFs, não só de SP e MG.
 
 ### Infra
-- Publicação com o `NPM_TOKEN` (token granular) e suporte a trusted publishing (OIDC).
+- Publicação via staged publishing (`npm stage publish`) com token granular "stage only": cada versão precisa de aprovação manual no npm.
 
 ## 2.1.0
 
