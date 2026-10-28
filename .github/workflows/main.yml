@@ -33,12 +33,16 @@ jobs:
       contents: read
       # trusted publishing (OIDC) do npm
       id-token: write
+    env:
+      # o .npmrc gerado pelo setup-node referencia ${NODE_AUTH_TOKEN}; o yarn falha se ela não existir
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 24.x
           cache: yarn
+          registry-url: 'https://registry.npmjs.org'
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
       - name: Checking if version is already published
