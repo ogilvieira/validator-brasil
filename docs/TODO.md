@@ -1,18 +1,16 @@
 # TODO
 
 ### Validadores
-- [x] Registro Geral (RG) - padrão SP
-- [x] Título de Eleitor
+- [x] Registro Geral (RG): dígito verificador em SP, formato nas demais UFs, CIN
+- [x] Título de Eleitor, incluindo 13 dígitos (SP/MG)
 - [x] Certidão (nascimento, casamento, divórcio ou óbito pós 2010)
 - [x] Inscrição Estadual
 - [x] Placa de Veículo
 - [x] Cartão Nacional de Saúde
 - [x] CNPJ alfanumérico
 - [x] Chave Pix (todos os tipos)
-- [ ] RG de outros estados (cada UF tem regra própria; poucos publicam o algoritmo)
-- [ ] Renavam antigo de 9 dígitos
-- [ ] Título de Eleitor de 13 dígitos (SP/MG antigos)
-- [ ] Número de Identificação Fiscal (NIF): definir escopo. No Brasil o NIF é o próprio CPF/CNPJ; o exemplo antigo (`664551142`) é um NIF de Portugal.
+- [x] Renavam antigo de 9 dígitos
+- [x] Número de Identificação Fiscal (CPF ou CNPJ)
 
 ### Documentação
 - [x] Integração com validator.js
@@ -23,4 +21,8 @@
 - [x] Integração com zod
 
 ### Pacote
-- [ ] Build ESM (`exports` com `import`/`require`)
+- [x] Build ESM (`exports` com `import`/`require`)
+
+### Ideias futuras
+- [ ] Dígito verificador do RG de outras UFs, se algum estado publicar o algoritmo
+- [ ] Confirmar com números reais as regras de Inscrição Estadual sem exemplo oficial (AM, MS, TO 9 dígitos)

@@ -1,7 +1,7 @@
 import { isRenavam } from './index';
 
-const valids = ['00197073212', '71199648424', '62185388230'];
-const invalids = ['33333333333', '22222222222', '71199648420', '7119964842']
+const valids = ['00197073212', '197073212', '71199648424', '62185388230'];
+const invalids = ['33333333333', '22222222222', '71199648420', '7119964842', '197073213', '1970732']
 
 describe("Renavam validation", () => {
   test.each(valids)("the number %p should be valid", (value) => {

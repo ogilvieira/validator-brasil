@@ -22,11 +22,11 @@ import validatorBrasil from 'validator-brasil';
 validatorBrasil.isCPF('045.462.356-90'); // true
 ```
 
-Também é possível importar só o que for usar:
+Também é possível importar só o que for usar. O pacote funciona com ESM (`import`) e CommonJS (`require`):
 
 ```typescript
 import { isCPF, isCNPJ } from 'validator-brasil';
-import isCNH from 'validator-brasil/dist/isCNH';
+import isCNH from 'validator-brasil/isCNH';
 const { isRenavam } = require('validator-brasil');
 ```
 
@@ -40,16 +40,17 @@ Todos os métodos retornam `boolean`, nunca lançam exceção e aceitam o valor 
 | `isCNPJ(value)` | CNPJ numérico e alfanumérico | `03.615.211/0001-27`, `12.ABC.345/01DE-35` |
 | `isCEP(value)` | CEP (formato) | `18703-357` |
 | `isCNH(value)` | CNH | `62312481179` |
-| `isRenavam(value)` | Renavam (11 dígitos) | `11779918350` |
+| `isRenavam(value)` | Renavam (11 dígitos, ou 9 no formato antigo) | `11779918350` |
 | `isUF(value)` | Sigla de estado brasileiro | `sp` |
 | `isChavePix(value, { type? })` | Chave Pix de qualquer tipo | `+5511987654321` |
 | `isPisPasep(value)` | PIS/PASEP/NIT | `888.18726.88-5` |
-| `isRG(value)` | RG no padrão SP (dígito verificador) | `35.181.674-4` |
-| `isTituloEleitor(value, { uf? })` | Título de Eleitor | `4340 2853 0132` |
+| `isRG(value, { uf? })` | RG (dígito verificador em SP, formato nas demais UFs) e CIN | `35.181.674-4` |
+| `isTituloEleitor(value, { uf? })` | Título de Eleitor (12 dígitos, ou 13 em SP/MG) | `4340 2853 0132` |
 | `isCertidao(value)` | Matrícula de certidão (nascimento, casamento, óbito) | `623584 01 55 2023 9 48814 529 8424277-49` |
 | `isInscricaoEstadual(value, { uf })` | Inscrição Estadual dos 27 estados | `110.042.490.114` (SP) |
 | `isPlacaVeiculo(value, { format? })` | Placa antiga ou Mercosul | `JYC-8417`, `BRA2E19` |
 | `isCNS(value)` | Cartão Nacional de Saúde (SUS) | `137 2766 6992 0001` |
+| `isNIF(value)` | Número de Identificação Fiscal (CPF ou CNPJ) | `145.525.860-17` |
 
 ### Detalhes
 
@@ -77,10 +78,22 @@ isChavePix('14552586017', { type: 'telefone' });      // false
 ```
 
 #### `isRG`
-Não existe algoritmo nacional para o RG: cada estado define o seu. Este método valida o padrão de **São Paulo** (8 dígitos + dígito verificador, que pode ser `X`). RGs de outros estados podem ser reprovados.
+Não existe algoritmo nacional para o RG: cada estado define o seu, e só São Paulo tem o cálculo do dígito verificador amplamente documentado.
+
+- **Sem `uf`, ou com `uf: 'SP'`:** valida o padrão SSP-SP, com 8 dígitos + dígito verificador (que pode ser `X`).
+- **Demais UFs:** valida só o formato: a sigla do estado opcional na frente (ex.: `MG-12.345.678`), de 5 a 14 caracteres numéricos (o último pode ser `X`) e sem todos os dígitos iguais. Isso não garante que o número exista.
+- **Com `uf` informada:** também aceita a **Carteira de Identidade Nacional (CIN)**, que desde 2023 usa o CPF como número.
+
+```typescript
+isRG('35.181.674-4');                          // true (SP, com dígito verificador)
+isRG('MG-12.345.678', { uf: 'MG' });           // true (formato)
+isRG('145.525.860-17', { uf: 'RJ' });          // true (CIN)
+```
 
 #### `isTituloEleitor`
-Valida os dígitos verificadores e o código de UF (posições 9 e 10). Com `{ uf }`, também confere se o título foi emitido naquele estado (`ZZ` = exterior).
+Valida os dígitos verificadores e o código de UF (as posições logo antes dos 2 dígitos verificadores). Com `{ uf }`, também confere se o título foi emitido naquele estado (`ZZ` = exterior).
+
+Títulos antigos de SP e MG podem ter 13 dígitos (sequencial com 9 dígitos). O TSE não publica o cálculo desse formato; o método segue a convenção usada na prática, com pesos de 9 a 2 da direita para a esquerda e voltando a 9 no nono dígito.
 
 #### `isInscricaoEstadual`
 `uf` é obrigatório, porque cada estado tem a sua regra. Retorna `false` para `"ISENTO"`.
@@ -88,6 +101,12 @@ Valida os dígitos verificadores e o código de UF (posições 9 e 10). Com `{ u
 ```typescript
 isInscricaoEstadual('110.042.490.114', { uf: 'SP' }); // true
 ```
+
+#### `isRenavam`
+Aceita o Renavam atual (11 dígitos) e o antigo (9 dígitos), que equivale ao atual com `00` à esquerda.
+
+#### `isNIF`
+No Brasil, o Número de Identificação Fiscal é o CPF (pessoa física) ou o CNPJ (pessoa jurídica), e é o que formulários internacionais pedem como "NIF/TIN brasileiro". O método aceita qualquer um dos dois. Não valida NIF de outros países, como o de Portugal.
 
 #### `isPlacaVeiculo`
 `format` aceita `'antiga'` (`AAA9999`) ou `'mercosul'` (`AAA9A99`). Sem a opção, aceita os dois.

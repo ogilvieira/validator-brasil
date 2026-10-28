@@ -1,5 +1,5 @@
-import isCPF from './isCPF';
-import isCNPJ from './isCNPJ';
+import isCPF from './isCPF.js';
+import isCNPJ from './isCNPJ.js';
 
 type ChavePixType = 'cpf' | 'cnpj' | 'email' | 'telefone' | 'aleatoria';
 type Options = { type?: ChavePixType };

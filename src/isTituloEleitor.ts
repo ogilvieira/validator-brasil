@@ -9,24 +9,30 @@ type Options = { uf?: string };
 
 const isTituloEleitor = ( value: string | number, options: Options = {} ): boolean => {
   value = (''+value).replace(/[\.\-\/\s]+/g, "");
-  if (!/^\d{12}$/.test(value) || value.match(/^(\d)\1{11}$/)) return false;
+  if (!/^\d{12,13}$/.test(value) || value.match(/^(\d)\1+$/)) return false;
 
-  const ufCode = value.substring(8, 10);
+  const size = value.length;
+  const ufCode = value.substring(size - 4, size - 2);
   if (+ufCode < 1 || +ufCode > 28) return false;
   if (options.uf && UF_CODES[options.uf.toUpperCase()] !== ufCode) return false;
 
   // SP (01) e MG (02): resto 0 vira DV 1
   const isSpMg = ufCode === '01' || ufCode === '02';
+  // títulos antigos de 13 dígitos (sequencial com 9 dígitos) só existem em SP e MG
+  if (size === 13 && !isSpMg) return false;
   const toDv = (rest: number): number => rest === 10 ? 0 : (rest === 0 && isSpMg ? 1 : rest);
 
+  // pesos de 9 a 2 da direita para a esquerda, voltando a 9 no nono dígito
   let sum = 0;
-  for (let i = 0; i < 8; i++) {
-    sum += +value.charAt(i) * (i + 2);
+  let weight = 9;
+  for (let i = size - 5; i >= 0; i--) {
+    sum += +value.charAt(i) * weight;
+    weight = weight === 2 ? 9 : weight - 1;
   }
   const dv1 = toDv(sum % 11);
   const dv2 = toDv((+ufCode.charAt(0) * 7 + +ufCode.charAt(1) * 8 + dv1 * 9) % 11);
 
-  return value.substring(10) === ''+dv1+dv2;
+  return value.substring(size - 2) === ''+dv1+dv2;
 }
 
 
