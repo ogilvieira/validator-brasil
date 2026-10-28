@@ -7,18 +7,48 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x, 24.x]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - name: Installing dependencies
+        run: yarn install --frozen-lockfile
+      - name: Running tests
+        run: yarn test --ci
+      - name: Building
+        run: yarn build
+
+  publish:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16.x
+          node-version: 24.x
+          cache: yarn
           registry-url: 'https://registry.npmjs.org'
       - name: Installing dependencies
-        run: npm install
-      - name: Running tests
-        run: npm run test -- -u --ci --updateSnapshot
-      - run: npm publish
+        run: yarn install --frozen-lockfile
+      - name: Checking if version is already published
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "validator-brasil@$VERSION" version > /dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publishing
+        if: steps.version.outputs.publish == 'true'
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
