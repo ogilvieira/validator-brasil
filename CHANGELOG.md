@@ -6,7 +6,7 @@
 - `isTituloEleitor` aceita títulos de 13 dígitos de todas as UFs, não só de SP e MG.
 
 ### Infra
-- Publicação só via trusted publishing (OIDC): o job de publish não usa mais o `NPM_TOKEN` nem gera `.npmrc`.
+- Publicação com o `NPM_TOKEN` (token granular) e suporte a trusted publishing (OIDC).
 
 ## 2.1.0
 
